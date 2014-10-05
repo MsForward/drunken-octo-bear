@@ -4,8 +4,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    User = mongoose.model('User');
+    Schema = mongoose.Schema;
 
 /**
  * Note Schema
@@ -13,7 +12,7 @@ var mongoose = require('mongoose'),
 var NoteSchema = new Schema({
   title: String,
   contentPlain: String,
-  user: User
+  user: Schema.Types.ObjectId
 });
 
 mongoose.model('Note', NoteSchema);
