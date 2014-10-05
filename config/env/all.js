@@ -7,14 +7,14 @@ module.exports = {
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
 	port: process.env.PORT || 3000,
-	templateEngine: 'swig',
+	templateEngine: 'jade',
 	sessionSecret: 'MEAN',
 	sessionCollection: 'sessions',
 	assets: {
 		lib: {
 			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				'public/lib/foundation/css/foundation.css',
+				'public/lib/foundation/css/normalize.css',
 			],
 			js: [
 				'public/lib/angular/angular.js',
