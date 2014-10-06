@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 	var watchFiles = {
 		serverViews: ['app/views/**/*.*'], 
 		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
-		clientViews: ['public/modules/**/views/**/*.html'],
+		clientViews: ['templates/**/*.jade'],
 		clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
 		clientCSS: ['public/modules/**/*.css'],
 		mochaTests: ['app/tests/**/*.js']
@@ -30,6 +30,7 @@ module.exports = function(grunt) {
 			},
 			clientViews: {
 				files: watchFiles.clientViews,
+        tasks: ['jade'],
 				options: {
 					livereload: true,
 				}
@@ -57,6 +58,18 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+    jade: {
+      options: {
+        pretty: true
+      },
+      all: {
+        expand: true,
+        cwd: 'templates/',
+        src: ['**/*.jade'],
+        dest: 'public/modules/',
+        ext: '.client.view.html'
+      }
+    },
 		csslint: {
 			options: {
 				csslintrc: '.csslintrc',
@@ -122,7 +135,10 @@ module.exports = function(grunt) {
 		env: {
 			test: {
 				NODE_ENV: 'test'
-			}
+			},
+      dev: {
+        NODE_ENV: 'development'
+      }
 		},
 		mochaTest: {
 			src: watchFiles.mochaTests,
@@ -154,7 +170,7 @@ module.exports = function(grunt) {
 	});
 
 	// Default task(s).
-	grunt.registerTask('default', ['lint', 'concurrent:default']);
+	grunt.registerTask('default', ['test', 'env:dev', 'jade', 'concurrent:default']);
 
 	// Debug task.
 	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
@@ -163,7 +179,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin', 'jade']);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);

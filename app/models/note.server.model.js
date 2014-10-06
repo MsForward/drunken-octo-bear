@@ -15,6 +15,7 @@ var NoteSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  }
 });
 
 mongoose.model('Note', NoteSchema);
