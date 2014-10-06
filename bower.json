@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
   "dependencies": {
+    "foundation": "~5.4.5",
     "angular": "~1.2",
     "angular-resource": "~1.2",
     "angular-mocks": "~1.2",
@@ -12,7 +13,8 @@
     "angular-sanitize": "~1.2",
     "angular-ui-utils": "~0.1.1",
     "angular-ui-router": "~0.2.10",
-    "foundation": "~5.4.5",
-    "angular-foundation": "~0.3.1"
+    "angular-foundation": "~0.3.1",
+    "angular-markdown": "~0.0.1",
+    "highlightjs": "~8.0.0"
   }
 }
