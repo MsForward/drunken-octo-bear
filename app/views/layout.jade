@@ -1,26 +1,37 @@
 doctype html
-html
+html(lang="en")
   head
-    title= title
+    title=title
 
     // General META
     meta(charset="utf-8")
+    meta(http-equiv="Content-type", content="text/html;charset=UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width,initial-scale=1")
 
-    // Semantic META
-    meta(name="keywords" content=keywords)
-    meta(name="description" content=description)
-
-    // Fav icon
-    link(href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon")
-
-    // Application CSS Files
+    // Application CSS
     each cssFile in cssFiles
-      link(rel="stylesheet" href=cssFile)
+    link(rel="stylesheet", href=cssFile)
 
     // HTML5 Shim -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+  body.ng-cloak
+
+    header(data-ng-include="modules/core/views/header.client.view.html")
+    section.content
+      block content
+
+    // Embedding the User Object
+    var user = user | json | safe;
+
+    // Application JavaScript
+    each jsFile in jsFiles
+      script(src=jsFile)
+
+    if process.env.NODE_ENV === "development
+      script(src="http://localhost:35729/livereload.js")
+
 

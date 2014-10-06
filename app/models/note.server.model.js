@@ -12,7 +12,9 @@ var mongoose = require('mongoose'),
 var NoteSchema = new Schema({
   title: String,
   contentPlain: String,
-  user: Schema.Types.ObjectId
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
 });
 
 mongoose.model('Note', NoteSchema);
