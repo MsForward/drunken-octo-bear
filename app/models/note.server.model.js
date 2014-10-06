@@ -12,12 +12,17 @@ var mongoose = require('mongoose'),
 var NoteSchema = new Schema({
   title: {
     type: String,
-    default: 'Untitled'
+    default: Date.now.toString()
   },
-  contentPlain: String,
+  contentPlain: {
+    type: String,
+    default: ''
+  },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: 'User reference is required',
+    index: true
   },
   tags: {
     type: [ String ],
@@ -25,11 +30,13 @@ var NoteSchema = new Schema({
   },
   created: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    index: true
   },
   modified: {
     type: Date
   }
 });
 
+noteSchema.index({ user: 1, created: -1, tags: 1 });
 mongoose.model('Note', NoteSchema);
