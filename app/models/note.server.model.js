@@ -38,5 +38,5 @@ var NoteSchema = new Schema({
   }
 });
 
-noteSchema.index({ user: 1, created: -1, tags: 1 });
+NoteSchema.index({ user: 1, created: -1, tags: 1 });
 mongoose.model('Note', NoteSchema);

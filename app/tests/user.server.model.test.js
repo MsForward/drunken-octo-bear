@@ -4,13 +4,14 @@
  * Module dependencies.
  */
 var should = require('should'),
-	mongoose = require('mongoose'),
-	User = mongoose.model('User');
+	  mongoose = require('mongoose'),
+	  User = mongoose.model('User'),
+    Note = mongoose.model('Note');
 
 /**
  * Globals
  */
-var user, user2;
+var user, user2, note;
 
 /**
  * Unit tests
@@ -18,6 +19,7 @@ var user, user2;
 describe('User Model Unit Tests:', function() {
 	before(function(done) {
 		user = new User({
+      id: new mongoose.Types.ObjectId(),
 			firstName: 'Full',
 			lastName: 'Name',
 			displayName: 'Full Name',
@@ -35,6 +37,9 @@ describe('User Model Unit Tests:', function() {
 			password: 'password',
 			provider: 'local'
 		});
+    note = new Note({
+      user: user._id
+    }).save();
 
 		done();
 	});
@@ -59,13 +64,24 @@ describe('User Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to show an error when try to save without first name', function(done) {
+		it('should be able to show an error when trying to save without first name', function(done) {
 			user.firstName = '';
 			return user.save(function(err) {
 				should.exist(err);
 				done();
 			});
 		});
+
+    it('should remove all notes when removing user', function(done) {
+      var id = user._id;
+      user.remove(function(err) {
+        should.not.exist(err);
+        Note.find({ user: id }, function(err, docs) {
+          docs.should.have.length(0);
+          done();
+        });
+      });
+    });
 	});
 
 	after(function(done) {
