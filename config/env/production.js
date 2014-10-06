@@ -6,7 +6,7 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/foundation/dist/css/foundation.min.css',
-				'public/lib/foundation/dist/css/normalize.min.css',
+				'public/lib/foundation/dist/css/normalize.min.css'
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
@@ -17,7 +17,10 @@ module.exports = {
 				'public/lib/angular-sanitize/angular-sanitize.js', 
 				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
 				'public/lib/angular-ui-utils/ui-utils.min.js',
-				'public/lib/angular-foundation/mm-foundation-tpls.min.js'
+				'public/lib/angular-foundation/mm-foundation-tpls.min.js',
+        'public/lib/highlightjs/highlight.pack.js',
+        'public/lib/showdown/compressed/showdown.js',
+        'public/lib/showdown/compressed/extensions/github.js'
 			]
 		},
 		css: 'public/dist/application.min.css',

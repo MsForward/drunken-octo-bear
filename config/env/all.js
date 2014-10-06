@@ -15,6 +15,7 @@ module.exports = {
 			css: [
 				'public/lib/foundation/css/foundation.css',
 				'public/lib/foundation/css/normalize.css',
+        'public/lib/highlightjs/styles/foundation.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -25,7 +26,10 @@ module.exports = {
 				'public/lib/angular-sanitize/angular-sanitize.js', 
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
-				'public/lib/angular-foundation/mm-foundation-tpls.js'
+				'public/lib/angular-foundation/mm-foundation-tpls.js',
+        'public/lib/highlightjs/highlight.pack.js',
+        'public/lib/showdown/src/showdown.js',
+        'public/lib/showdown/src/extensions/github.js'
 			]
 		},
 		css: [
