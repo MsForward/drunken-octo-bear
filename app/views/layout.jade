@@ -1,0 +1,32 @@
+doctype html
+html(lang="en"
+    head
+        title=title
+
+        // General META
+        meta(charset="utf-8")
+        meta(http-equiv="Content-type", content="text/html;charset=UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width,scale=1")
+
+        // Application CSS
+        each cssFile in cssFiles
+            link(rel="stylesheet", href=cssFile)
+
+    body.ng-cloak
+
+        header(data-ng-include="modules/core/views/header.client.view.html")
+        section.content
+            block content
+
+        // Embedding the User Object
+        var user = user | json | safe;
+
+        // Application JavaScript
+        each jsFile in jsFiles
+            script(src=jsFile)
+
+        if process.env.NODE_ENV === "development
+            script(src="http://localhost:35729/livereload.js")
+
+

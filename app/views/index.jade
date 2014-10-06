@@ -1,9 +1,7 @@
-doctype html
-html
+extends layout.jade
 
-head
-    title= title
-
-body
-    h1 Hello
-    form
+block content
+    section(data-ui-view)
+        .row
+            .small-12.columns
+                form
