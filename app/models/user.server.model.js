@@ -104,6 +104,16 @@ UserSchema.pre('save', function(next) {
 });
 
 /**
+ * Hook a pre remove method to remove all notes
+ */
+UserSchema.pre('remove', function(next) {
+  this.model('Note').remove({ user: this._id }, function(err) {
+    if (err) throw err;
+    else next();
+  });
+});
+
+/**
  * Create instance method for hashing a password
  */
 UserSchema.methods.hashPassword = function(password) {
