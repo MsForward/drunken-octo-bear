@@ -4,7 +4,8 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    ObjectId = Schema.Types.ObjectId;
 
 /**
  * Note Schema
@@ -12,14 +13,14 @@ var mongoose = require('mongoose'),
 var NoteSchema = new Schema({
   title: {
     type: String,
-    default: Date.now.toString()
+    default: new Date().toString()
   },
   contentPlain: {
     type: String,
     default: ''
   },
   user: {
-    type: Schema.Types.ObjectId,
+    type: ObjectId,
     ref: 'User',
     required: 'User reference is required',
     index: true

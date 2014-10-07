@@ -17,21 +17,21 @@ var user, user2, note;
  * Unit tests
  */
 describe('User Model Unit Tests:', function() {
-	before(function(done) {
+
+	beforeEach(function(done) {
 		user = new User({
-      id: new mongoose.Types.ObjectId(),
-			firstName: 'Full',
-			lastName: 'Name',
-			displayName: 'Full Name',
+			firstName: 'John',
+			lastName: 'Doe',
+			displayName: 'John Doe',
 			email: 'test@test.com',
 			username: 'username',
 			password: 'password',
 			provider: 'local'
 		});
 		user2 = new User({
-			firstName: 'Full',
-			lastName: 'Name',
-			displayName: 'Full Name',
+			firstName: 'John',
+			lastName: 'Doe',
+			displayName: 'John Doe',
 			email: 'test@test.com',
 			username: 'username',
 			password: 'password',
@@ -39,12 +39,13 @@ describe('User Model Unit Tests:', function() {
 		});
     note = new Note({
       user: user._id
-    }).save();
+    });
 
 		done();
 	});
 
 	describe('Method Save', function() {
+
 		it('should begin with no users', function(done) {
 			User.find({}, function(err, users) {
 				users.should.have.length(0);
@@ -70,22 +71,29 @@ describe('User Model Unit Tests:', function() {
 				should.exist(err);
 				done();
 			});
-		});
-
-    it('should remove all notes when removing user', function(done) {
-      var id = user._id;
-      user.remove(function(err) {
-        should.not.exist(err);
-        Note.find({ user: id }, function(err, docs) {
-          docs.should.have.length(0);
-          done();
-        });
-      });
     });
 	});
 
-	after(function(done) {
+  describe('Method Remove', function() {
+
+    beforeEach(function(done) {
+      user.save(function(err) {
+        if (err) done(err);
+        note.save(done);
+      });
+    });
+
+    it('should be able to remove', function(done) {
+      User.remove({ _id: user._id }, function(err) {
+        should.not.exist(err);
+        done();
+      });
+    });
+  });
+
+	afterEach(function(done) {
 		User.remove().exec();
+    Note.remove().exec();
 		done();
 	});
 });

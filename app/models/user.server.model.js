@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	crypto = require('crypto');
+    Schema = mongoose.Schema,
+    crypto = require('crypto');
 
 /**
  * A Validation function for local strategy properties
@@ -106,10 +106,10 @@ UserSchema.pre('save', function(next) {
 /**
  * Hook a pre remove method to remove all notes
  */
-UserSchema.pre('remove', function(next) {
-  this.model('Note').remove({ user: this._id }, function(err) {
-    if (err) throw err;
-    else next();
+UserSchema.post('remove', function(next) {
+  mongoose.model('Note').remove({ user: this._id }, function(err) {
+    console.log('Removing all notes for deleted user: ' + this.username);
+    next(err);
   });
 });
 
