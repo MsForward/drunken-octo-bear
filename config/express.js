@@ -54,8 +54,8 @@ module.exports = function(db) {
 	// Showing stack errors
 	app.set('showStackError', true);
 
-	// Set jade as the template engine
-	app.engine(config.templateEngine, consolidate[config.templateEngine]);
+	// Set template engine
+	//app.engine('jade', require('jade')._express);
 
 	// Set views path and view engine
 	app.set('view engine', config.templateEngine);

@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
   head
-    title=title
+    title= title
 
     // General META
     meta(charset="utf-8")
@@ -11,27 +11,35 @@ html(lang="en")
 
     // Application CSS
     each cssFile in cssFiles
-    link(rel="stylesheet", href=cssFile)
+      link(rel="stylesheet", href=cssFile)
 
-    // HTML5 Shim -->
+    // HTML5 Shim
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
   body.ng-cloak
 
-    header(data-ng-include="modules/core/views/header.client.view.html")
-    section.content
-      block content
+    .container.off-canvas-wrap(data-offcanvas)
+      section.inner-wrap
+        header(data-ng-include="'/modules/core/views/header.client.view.html'")
 
-    // Embedding the User Object
-    var user = user | json | safe;
+        main.content.main-section
+          block content
+
+        a.exit-off-canvas
+
+
+    //- Embedding the User Object
+    script var user = user | json | safe;
 
     // Application JavaScript
     each jsFile in jsFiles
       script(src=jsFile)
 
-    if process.env.NODE_ENV === "development
+    script $(document).foundation();
+
+    if process.env.NODE_ENV === "development"
       script(src="http://localhost:35729/livereload.js")
 
 

@@ -18,6 +18,9 @@ module.exports = {
         'public/lib/highlightjs/styles/foundation.css'
 			],
 			js: [
+        'public/lib/jquery/dist/jquery.js',
+        'public/lib/foundation/vendor/fastclick.js',
+        'public/lib/foundation/js/foundation.js',
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js', 
 				'public/lib/angular-cookies/angular-cookies.js', 
