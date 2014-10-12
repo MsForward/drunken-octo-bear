@@ -19,7 +19,7 @@ module.exports = {
 			],
 			js: [
         'public/lib/jquery/dist/jquery.js',
-        'public/lib/foundation/vendor/fastclick.js',
+        'public/lib/foundation/js/vendor/fastclick.js',
         'public/lib/foundation/js/foundation.js',
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js', 
