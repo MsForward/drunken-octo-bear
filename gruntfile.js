@@ -151,7 +151,23 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'karma.conf.js'
 			}
-		}
+		},
+    protractor_webdriver: {
+      test: {
+
+      }
+    },
+    protractor: {
+      options: {
+        configFile: 'protractor.conf.js'
+      },
+      debug: {
+        options: {
+          debug: true
+        }
+      },
+      run: {}
+    }
 	});
 
 	// Load NPM tasks 
@@ -182,5 +198,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin', 'jade']);
 
 	// Test task.
-	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit', 'protractor_webdriver', 'protractor:run']);
 };
