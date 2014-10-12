@@ -1,0 +1,17 @@
+section(data-ng-controller="AuthenticationController")
+  form(data-ng-submit="signin()")
+    fieldset
+      .row
+        .small-3.columns
+          label.right.inline(for="username") Username
+        .small-9.columns
+          input(type="text", name="username", placeholder="Username" data-ng-model="credentials.username")
+      .row
+        .small-3.columns
+          label.right.inline(for="password") Password
+        .small-9.columns
+          input(type="password", name="password", placeholder="Password" data-ng-model="credentials.password")
+    .row
+      button.right(type="submit") Sign In
+    .row(data-ng-show="error")
+      strong(data-ng-bing="error")
