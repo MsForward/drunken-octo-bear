@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 				files: watchFiles.clientViews,
         tasks: ['jade'],
 				options: {
-					livereload: true,
+					livereload: true
 				}
 			},
 			clientJS: {
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
     },
 		csslint: {
 			options: {
-				csslintrc: '.csslintrc',
+				csslintrc: '.csslintrc'
 			},
 			all: {
 				src: watchFiles.clientCSS
@@ -95,6 +95,30 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+    wiredep: {
+      all: {
+        src: [
+          'app/views/bower.js.jade',
+          'app/views/bower.css.jade'
+        ],
+        options: {
+          ignorePath: /^(\/|\.+(?!\/[^\.]))+\.+\/public\//,
+          fileTypes: {
+            jade: {
+              block: /(([ \t]*)\/\/\s*bower:*(\S*))(\n|\r|.)*?(\/\/\s*endbower)/gi,
+              detect: {
+                js: /script\(.*src=['"]([^'"]+)/gi,
+                css: /link\(.*href=['"]([^'"]+)/gi
+              },
+              replace: {
+                js: 'script(src="{{filePath}}")',
+                css: 'link(rel="stylesheet", href="{{filePath}}")'
+              }
+            }
+          }
+        }
+      }
+    },
 		nodemon: {
 			dev: {
 				script: 'server.js',
@@ -186,7 +210,7 @@ module.exports = function(grunt) {
 	});
 
 	// Default task(s).
-	grunt.registerTask('default', ['test', 'env:dev', 'jade', 'concurrent:default']);
+	grunt.registerTask('default', ['test', 'env:dev', 'wiredep', 'jade', 'concurrent:default']);
 
 	// Debug task.
 	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
