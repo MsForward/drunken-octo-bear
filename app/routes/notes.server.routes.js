@@ -6,11 +6,11 @@ module.exports = function(app) {
 
 	// Notes Routes
 	app.route('/notes')
-		.get(users.requiresLogin, notes.list)
-		.post(users.requiresLogin, notes.create);
+		.get(users.requiresLogin, notes.hasAuthorization, notes.list)
+		.post(users.requiresLogin, notes.hasAuthorization, notes.create);
 
 	app.route('/notes/:noteId')
-		.get(notes.read)
+		.get(users.requiresLogin, notes.hasAuthorization, notes.read)
 		.put(users.requiresLogin, notes.hasAuthorization, notes.update)
 		.delete(users.requiresLogin, notes.hasAuthorization, notes.delete);
 
