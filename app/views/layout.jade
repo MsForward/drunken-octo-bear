@@ -12,7 +12,6 @@ html(lang="en")
     // Application CSS
     each cssFile in cssFiles
       link(rel="stylesheet", href=cssFile)
-    include bower.css.jade
 
     // HTML5 Shim
     <!--[if lt IE 9]>
@@ -37,8 +36,6 @@ html(lang="en")
     // Application JavaScript
     each jsFile in jsFiles
       script(src=jsFile)
-
-    include bower.js.jade
 
     // Initialize Foundation
     script $(document).foundation();

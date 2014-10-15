@@ -98,21 +98,20 @@ module.exports = function(grunt) {
     wiredep: {
       all: {
         src: [
-          'app/views/bower.js.jade',
-          'app/views/bower.css.jade'
+          'config/env/all.js'
         ],
         options: {
-          ignorePath: /^(\/|\.+(?!\/[^\.]))+\.+\/public\//,
+          ignorePath: /^(\/|\.+(?!\/[^\.]))+\.+\//,
           fileTypes: {
-            jade: {
+            js: {
               block: /(([ \t]*)\/\/\s*bower:*(\S*))(\n|\r|.)*?(\/\/\s*endbower)/gi,
               detect: {
                 js: /script\(.*src=['"]([^'"]+)/gi,
                 css: /link\(.*href=['"]([^'"]+)/gi
               },
               replace: {
-                js: 'script(src="{{filePath}}")',
-                css: 'link(rel="stylesheet", href="{{filePath}}")'
+                js: '\'{{filePath}}\',',
+                css: '\'{{filePath}}\','
               }
             }
           }
