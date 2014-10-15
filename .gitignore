@@ -10,3 +10,4 @@ app/tests/coverage/
 .idea/
 *.bak.html
 *.client.view.html
+*.log
