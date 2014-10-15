@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var note = new Note(req.body);
-	note.user = req.user;
+	note.user = req.user._id;
 
 	note.save(function(err) {
 		if (err) {
