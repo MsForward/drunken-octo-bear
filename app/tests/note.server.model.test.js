@@ -76,6 +76,27 @@ describe('Note Model Unit Tests:', function() {
     });
 	});
 
+  describe('Method Remove', function() {
+
+    beforeEach(function(done) {
+      note = new Note({
+        user: user._id
+      });
+      note.save(done);
+      });
+
+    it('should be able to delete', function(done) {
+      Note.remove({ _id: note._id }, function(err) {
+        should.not.exist(err);
+
+        Note.findOne({ _id: note._id }, function(err, note) {
+          should.not.exist(note);
+          done();
+        });
+      });
+    });
+  });
+
 	after(function(done) {
 		Note.remove().exec();
 		User.remove().exec();
