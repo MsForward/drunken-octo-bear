@@ -74,23 +74,6 @@ describe('User Model Unit Tests:', function() {
     });
 	});
 
-  describe('Method Remove', function() {
-
-    beforeEach(function(done) {
-      user.save(function(err) {
-        if (err) done(err);
-        note.save(done);
-      });
-    });
-
-    it('should be able to remove', function(done) {
-      User.remove({ _id: user._id }, function(err) {
-        should.not.exist(err);
-        done();
-      });
-    });
-  });
-
 	afterEach(function(done) {
 		User.remove().exec();
     Note.remove().exec();
