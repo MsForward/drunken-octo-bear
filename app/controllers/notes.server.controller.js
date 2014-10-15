@@ -98,7 +98,7 @@ exports.noteByID = function(req, res, next, id) { Note.findById(id).populate('us
  * Note authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.note.user._id !== req.user._id) {
+	if (req.note.user !== req.user._id) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();
